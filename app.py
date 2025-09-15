@@ -1,14 +1,10 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title="Team Nexus - SIH Project",
+    page_title="Team Nexus - SIH25069",
     page_icon="🤖",
     layout="wide",
 )
-
-# Optional: Add a logo for a professional touch.
-# If you have a logo file, place it in the same directory as this script.
-# st.image("logo.png", width=150)
 
 st.title("🌱 AI-Driven LCA Tool for Mining Sustainability")
 st.markdown("### A proactive solution for environmental stewardship in the mining industry.")

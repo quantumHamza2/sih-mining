@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 
 # --- Configuration for your dataset ---
 START_DATE = datetime(2025, 1, 1)  # Starting date for your data
-NUM_DAYS = 365  # Number of days to simulate (e.g., one year)
+NUM_DAYS = 730  # Number of days to simulate (e.g., one year)
 BASE_TONNAGE = 5000  # Average daily tonnage of ore processed
 BASE_WATER_USAGE = 1500  # Average daily water usage in cubic meters
 BASE_ENERGY_CONSUMPTION = 8000  # Average daily energy consumption in kWh

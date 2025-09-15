@@ -1,8 +1,7 @@
 import streamlit as st
-import pandas as pd
 
-# --- Page Content ---
 st.title("ℹ️ About Team Nexus & Our Project")
+st.write(f"### Problem Statement ID: SIH{st.session_state.get('problem_id', '25069')}")
 
 st.header("The Problem")
 st.write("The mining industry's environmental impact is a critical global concern. Traditional Life Cycle Assessments (LCAs) are manual, time-consuming, and outdated, making it difficult for companies to manage their sustainability in real-time. This leads to inefficient operations, high costs, and missed opportunities for environmental stewardship.")
@@ -10,12 +9,15 @@ st.write("The mining industry's environmental impact is a critical global concer
 st.header("Our Solution")
 st.write("Team Nexus has developed an **AI-driven LCA tool** that automates the entire process. Our solution integrates with real-time data sources (like IoT sensors and production logs) to provide a live, predictive dashboard of a mine's environmental footprint. We transform static reports into an actionable tool for a more sustainable future.")
 
-st.header("Our Team")
-st.write("We are Team Nexus, a group of dedicated innovators focused on solving real-world problems with technology.")
+st.header("Our Team - Team Nexus")
+st.write("We are a team of dedicated innovators focused on solving real-world problems with technology.")
 st.markdown("""
-* **[Your Name]:** Backend Developer & AI Lead
-* **[Your Teammate's Name]:** Frontend & UI/UX Designer
-* **[Your Teammate's Name]:** Project Manager & Presenter
+* **Kartik Gupta**
+* **Khushi Raghav**
+* **Mohd. Hamza Khan**
+* **Adhish Pradhan**
+* **Jaiwin Singh Gaur**
+* **Brahvish Raj Devarajan**
 """)
 
 st.header("Tech Stack")
