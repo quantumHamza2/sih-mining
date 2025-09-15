@@ -13,7 +13,7 @@ venv/
 # Operating System files
 .DS_Store
 Thumbs.db
-
+.streamlit/
 # Any data that you don't want committed
 # Your generated dataset is small, so you can commit it,
 # but for a larger project, you would ignore it.
