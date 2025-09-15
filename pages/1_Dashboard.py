@@ -28,7 +28,8 @@ min_tonnage = st.sidebar.slider(
     'Minimum Tonnage Processed',
     min_value=int(df['Tonnage_Processed_tons'].min()),
     max_value=int(df['Tonnage_Processed_tons'].max()),
-    value=int(df['Tonnage_Processed_tons'].min())
+    value=int(df['Tonnage_Processed_tons'].min()),
+    help="Tonnage processed refers to the amount of raw ore extracted and processed by the mine in metric tons."
 )
 
 # Apply the filter to the data
@@ -44,13 +45,16 @@ else:
     col1, col2, col3 = st.columns(3)
     with col1:
         total_co2 = filtered_df['CO2_Emissions_kg'].sum()
-        st.metric(label="Total CO2 Emissions", value=f"{total_co2:,.0f} kg")
+        st.metric(label="Total CO2 Emissions", value=f"{total_co2:,.0f} kg",
+                  help="This number represents the total carbon footprint of the mining operations over the selected period, measured in kilograms of CO2 equivalent (CO2e).")
     with col2:
         total_water = filtered_df['Water_Usage_m3'].sum()
-        st.metric(label="Total Water Usage", value=f"{total_water:,.0f} m³")
+        st.metric(label="Total Water Usage", value=f"{total_water:,.0f} m³",
+                  help="The total volume of water used in the mining process, measured in cubic meters.")
     with col3:
         avg_co2_daily = filtered_df['CO2_Emissions_kg'].mean()
-        st.metric(label="Average Daily CO2", value=f"{avg_co2_daily:,.0f} kg")
+        st.metric(label="Average Daily CO2", value=f"{avg_co2_daily:,.0f} kg",
+                  help="The average amount of carbon emissions produced per day from all operations.")
 
     st.write("---")
 
@@ -69,7 +73,8 @@ else:
     # Use a slider to get user input for a change in energy consumption
     energy_change_percent = st.slider(
         'Change in Energy Consumption (%)',
-        min_value=-50, max_value=50, value=0, step=5
+        min_value=-50, max_value=50, value=0, step=5,
+        help="Simulate a percentage increase or decrease in the mine's overall energy consumption."
     )
 
     # Get the original average daily energy consumption
@@ -85,11 +90,15 @@ else:
     # Display the results
     col1, col2 = st.columns(2)
     with col1:
-        st.metric(label="Original Avg. Daily Energy", value=f"{original_avg_energy:,.0f} kWh")
-        st.metric(label="New Avg. Daily Energy", value=f"{new_avg_energy:,.0f} kWh")
+        st.metric(label="Original Avg. Daily Energy", value=f"{original_avg_energy:,.0f} kWh",
+                  help="The average daily energy consumed before applying the 'What-If' scenario.")
+        st.metric(label="New Avg. Daily Energy", value=f"{new_avg_energy:,.0f} kWh",
+                  help="The projected average daily energy based on the 'What-If' scenario.")
     with col2:
-        st.metric(label="Original Avg. Daily CO2", value=f"{original_avg_co2:,.0f} kg")
-        st.metric(label="New Avg. Daily CO2", value=f"{new_avg_co2:,.0f} kg")
+        st.metric(label="Original Avg. Daily CO2", value=f"{original_avg_co2:,.0f} kg",
+                  help="The original average daily CO2 emissions.")
+        st.metric(label="New Avg. Daily CO2", value=f"{new_avg_co2:,.0f} kg",
+                  help="The projected average daily CO2 emissions based on the 'What-If' scenario.")
 
     st.info("This analysis shows how a simple change in energy efficiency can directly impact your carbon footprint.")
     st.write("---")
