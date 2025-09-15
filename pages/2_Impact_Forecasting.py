@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import numpy as np  # <-- The missing line
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 
@@ -16,21 +17,33 @@ def load_and_process_data(file_path='mining_data.csv'):
     return df
 
 def train_predictive_model(df, target='CO2_Emissions_kg', future_days=7):
+    """Trains a simple regression model to predict future emissions with variability."""
+    
     df['Day_of_Year'] = df.index.dayofyear
     df['Month'] = df.index.month
+    
     features = ['Energy_Consumption_kWh', 'Fuel_Consumption_L', 'Day_of_Year', 'Month']
     X = df[features]
     y = df[target]
+
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, shuffle=False)
+    
     model = LinearRegression()
     model.fit(X_train, y_train)
+
     last_row_data = X.iloc[-1]
     future_data = pd.DataFrame(index=range(future_days), columns=features)
+    
+    energy_std = df['Energy_Consumption_kWh'].std()
+    fuel_std = df['Fuel_Consumption_L'].std()
+
     for i in range(future_days):
         future_data.iloc[i]['Day_of_Year'] = (last_row_data['Day_of_Year'] + i + 1) % 365
         future_data.iloc[i]['Month'] = (last_row_data['Month'] + ((last_row_data['Day_of_Year'] + i) // 30)) % 12
-        future_data.iloc[i]['Energy_Consumption_kWh'] = last_row_data['Energy_Consumption_kWh']
-        future_data.iloc[i]['Fuel_Consumption_L'] = last_row_data['Fuel_Consumption_L']
+        
+        future_data.iloc[i]['Energy_Consumption_kWh'] = last_row_data['Energy_Consumption_kWh'] + np.random.normal(0, energy_std * 0.1)
+        future_data.iloc[i]['Fuel_Consumption_L'] = last_row_data['Fuel_Consumption_L'] + np.random.normal(0, fuel_std * 0.1)
+    
     future_predictions = model.predict(future_data)
     return future_predictions
 
