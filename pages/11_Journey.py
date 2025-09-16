@@ -24,20 +24,18 @@ journey_steps = {
 }
 
 # Create buttons to update the progress
-col1, col2, col3, col4, col5 = st.columns(5)
+col1, col2, col3, col4, = st.columns(4)
+
 with col1:
-    if st.button("Start", use_container_width=True):
-        st.session_state.progress_value = journey_steps["Raw Data"]
-with col2:
     if st.button("Step 1: Data", use_container_width=True):
         st.session_state.progress_value = journey_steps["Raw Data"]
-with col3:
+with col2:
     if st.button("Step 2: Analysis", use_container_width=True):
         st.session_state.progress_value = journey_steps["AI Analysis"]
-with col4:
+with col3:
     if st.button("Step 3: Predictions", use_container_width=True):
         st.session_state.progress_value = journey_steps["Predictive AI"]
-with col5:
+with col4:
     if st.button("Step 4: Insights", use_container_width=True):
         st.session_state.progress_value = journey_steps["Dashboard"]
 
