@@ -21,7 +21,7 @@ st.write("---")
 
 # Find the day with the highest emissions
 highest_emission_day = df.loc[df['CO2_Emissions_kg'].idxmax()]
-st.header("The Most Polluting Day 😔")
+st.header("The Most Polluting Day ")
 st.markdown(f"""
 Our data shows that the day with the highest carbon emissions was **{highest_emission_day.name.strftime('%B %d, %Y')}**.
 On this day, the mine emitted a total of **{highest_emission_day['CO2_Emissions_kg']:,.0f} kg of CO2**.
@@ -33,7 +33,7 @@ st.write("---")
 df['Month'] = df.index.month
 monthly_avg_emissions = df.groupby('Month')['CO2_Emissions_kg'].mean()
 lowest_emission_month = monthly_avg_emissions.idxmin()
-st.header("The Most Efficient Month 🎉")
+st.header("The Most Efficient Month ")
 st.markdown(f"""
 The most efficient month for the mine was **{pd.to_datetime(str(lowest_emission_month), format='%m').strftime('%B')}**,
 with an average of only **{monthly_avg_emissions.min():,.0f} kg of CO2** per day.
@@ -43,7 +43,7 @@ st.write("---")
 
 # Find the most productive day
 highest_tonnage_day = df.loc[df['Tonnage_Processed_tons'].idxmax()]
-st.header("The Most Productive Day 🚀")
+st.header("The Most Productive Day ")
 st.markdown(f"""
 The mine had its most productive day on **{highest_tonnage_day.name.strftime('%B %d, %Y')}**,
 processing a total of **{highest_tonnage_day['Tonnage_Processed_tons']:,.0f} tons of ore**.
