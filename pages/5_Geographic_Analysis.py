@@ -18,7 +18,7 @@ data = {
 df = pd.DataFrame(data)
 
 # --- Page Content ---
-st.title("🗺️ Geographic Impact Analysis (India)")
+st.title(" Geographic Impact Analysis (India)")
 st.write("### Visualize the environmental footprint of mining across different locations.")
 
 # --- Add a sidebar filter for states ---

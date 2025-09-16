@@ -16,7 +16,7 @@ def load_and_process_data(file_path='mining_data.csv'):
     return df
 
 # --- Page Content ---
-st.title("📊 Real-Time Mining Sustainability Dashboard")
+st.title(" Real-Time Mining Sustainability Dashboard")
 st.markdown("### An overview of key environmental performance indicators.")
 
 # Load the original, unfiltered data here first

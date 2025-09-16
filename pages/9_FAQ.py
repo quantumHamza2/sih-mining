@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.title("❓ Frequently Asked Questions")
+st.title(" Frequently Asked Questions")
 st.write("A quick guide to understanding our project, its technology, and its impact.")
 
 st.write("---")

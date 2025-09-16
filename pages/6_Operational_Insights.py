@@ -16,7 +16,7 @@ def load_and_process_data(file_path='mining_data.csv'):
     return df
 
 # --- Page Content ---
-st.title("💡 Operational & Business Insights")
+st.title(" Operational & Business Insights")
 st.write("### Deriving key metrics to optimize efficiency and reduce costs.")
 
 df = load_and_process_data()

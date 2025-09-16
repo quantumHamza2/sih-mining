@@ -16,7 +16,7 @@ def load_and_process_data(file_path='mining_data.csv'):
     return df
 
 # --- Page Content ---
-st.title("📊 Detailed Life Cycle Analysis")
+st.title(" Detailed Life Cycle Analysis")
 st.write("### A granular breakdown of environmental impacts across the mining value chain.")
 
 df = load_and_process_data()

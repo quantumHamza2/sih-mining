@@ -40,7 +40,7 @@ def train_predictive_model(df, target='CO2_Emissions_kg', future_days=7):
     return future_predictions
 
 # --- Page Content ---
-st.title("🔮 AI-Powered Environmental Impact Forecasting")
+st.title(" AI-Powered Environmental Impact Forecasting")
 st.write("### Our AI model predicts future environmental impact to enable proactive sustainability management.")
 
 df = load_and_process_data()

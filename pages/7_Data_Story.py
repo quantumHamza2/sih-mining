@@ -12,7 +12,7 @@ def load_and_process_data(file_path='mining_data.csv'):
     df['CO2_Emissions_kg'] = (df['Energy_Consumption_kWh'] * CO2_PER_KWH) + (df['Fuel_Consumption_L'] * CO2_PER_LITER_DIESEL)
     return df
 
-st.title("📖 The Story Our Data Tells")
+st.title(" The Story Our Data Tells")
 st.write("### A narrative look at key events and insights from our operational data.")
 
 df = load_and_process_data()

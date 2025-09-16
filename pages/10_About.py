@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.title("ℹ️ About Team Nexus & Our Project")
+st.title("ℹ About Team Nexus & Our Project")
 st.write(f"### Problem Statement ID: SIH{st.session_state.get('problem_id', '25069')}")
 
 st.header("The Problem")

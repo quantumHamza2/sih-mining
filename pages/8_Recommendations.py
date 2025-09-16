@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.title("🎯 Actionable Insights & Recommendations")
+st.title(" Actionable Insights & Recommendations")
 st.write("### Turning data into a clear plan for a more sustainable future.")
 
 st.write("---")
