@@ -28,18 +28,18 @@ if 'solution_selected' not in st.session_state:
 # Create the buttons with a cleaner layout
 st.write("---")
 st.markdown("#### **Choose an Action:**")
-col1, col2, col3, col4 = st.columns(4, gap="small") # Use columns for uniform size
+col1, col2, col3, col4 = st.columns(4, gap="small")
 with col1:
-    if st.button("Solar Energy", use_container_width=True):
+    if st.button("Solar Energy", use_container_width=True, help="A solar model is a strategy for integrating solar energy to power a mine's operations, reducing its dependence on fossil fuels and lowering electricity costs."):
         st.session_state.solution_selected = 'solar'
 with col2:
-    if st.button("Fleet Electrification", use_container_width=True):
+    if st.button("Fleet Electrification", use_container_width=True, help="This involves replacing a mine's heavy-duty diesel vehicles and machinery with electric-powered alternatives to drastically reduce carbon emissions and air pollution."):
         st.session_state.solution_selected = 'fleet'
 with col3:
-    if st.button("Water System", use_container_width=True):
+    if st.button("Water System", use_container_width=True, help="A water closed-loop system is a process that recycles and reuses water within the mine's operations, minimizing water waste and reducing the environmental impact on local water sources."):
         st.session_state.solution_selected = 'water'
 with col4:
-    if st.button("Process Optimization", use_container_width=True):
+    if st.button("Process Optimization", use_container_width=True, help="This is an analytical model that uses real-time data to identify the most efficient way to run a mining process, which leads to reduced energy consumption, waste, and costs."):
         st.session_state.solution_selected = 'optimize'
 
 # Create a container for the chart and metrics
@@ -89,7 +89,7 @@ else:
         fig = px.line(combined_df, x=combined_df.index, y=metric_to_show, color='Scenario',
                       title=f"Original vs. Simulated Impact on {metric_to_show.replace('_', ' ')}",
                       labels={'Value': metric_to_show, 'Date': 'Date'},
-                      color_discrete_map={'Original Data': 'grey', 'Simulated Impact': '#228B22'}) # Changed color to a trading green
+                      color_discrete_map={'Original Data': 'grey', 'Simulated Impact': '#228B22'})
 
         fig.update_layout(transition_duration=1000)
         

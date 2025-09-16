@@ -16,15 +16,50 @@ def load_and_process_data(file_path='mining_data.csv'):
     return df
 
 # --- Page Content ---
-st.title(" Operational & Business Insights")
+st.title("💡 Operational & Business Insights")
 st.write("### Deriving key metrics to optimize efficiency and reduce costs.")
 
 df = load_and_process_data()
 
 st.write("---")
 
+# --- Interactive Cost Reduction Simulator ---
+st.header("1. Profit & Cost Reduction Simulator")
+st.write("Use the slider below to simulate the financial benefits of reducing energy consumption.")
+
+energy_reduction_percent = st.slider(
+    "Simulate Energy Consumption Reduction (%)",
+    min_value=0, max_value=25, value=0, step=1
+)
+
+# --- Key Assumptions (You can explain these in your pitch) ---
+cost_per_kwh = 0.12  # $0.12 per kWh
+cost_per_liter = 0.90  # $0.90 per liter of diesel
+carbon_credit_price = 25  # $25 per tonne of CO2
+
+# Calculate new costs based on the slider
+df_simulated = df.copy()
+df_simulated['Energy_Consumption_kWh'] = df_simulated['Energy_Consumption_kWh'] * (1 - energy_reduction_percent / 100)
+
+total_energy_cost_original = df['Energy_Consumption_kWh'].sum() * cost_per_kwh
+total_energy_cost_simulated = df_simulated['Energy_Consumption_kWh'].sum() * cost_per_kwh
+
+cost_saving = total_energy_cost_original - total_energy_cost_simulated
+
+# Create a DataFrame for the bar chart
+cost_data = pd.DataFrame({
+    'Scenario': ['Original Cost', 'Simulated Cost'],
+    'Total Cost': [total_energy_cost_original, total_energy_cost_simulated]
+})
+
+fig = px.bar(cost_data, x='Scenario', y='Total Cost', title=f"Total Energy Cost | Saving: ${cost_saving:,.0f}", color='Scenario')
+st.plotly_chart(fig)
+
+st.success(f"### By reducing energy consumption by {energy_reduction_percent}%, your project could save a total of ${cost_saving:,.0f}!")
+st.write("---")
+
 # --- Efficiency Metrics ---
-st.header("1. Operational Efficiency Metrics")
+st.header("2. Operational Efficiency Metrics")
 st.write("These metrics show the environmental and energy impact per unit of ore processed.")
 
 # Calculate Efficiency Metrics
@@ -42,13 +77,8 @@ with col2:
 st.write("---")
 
 # --- Cost Simulation ---
-st.header("2. Financial Impact Simulation")
+st.header("3. Financial Impact Simulation")
 st.write("This section simulates the financial impact of operational costs and potential revenue from carbon credits.")
-
-# --- Key Assumptions (You can explain these in your pitch) ---
-cost_per_kwh = 0.12  # $0.12 per kWh
-cost_per_liter = 0.90  # $0.90 per liter of diesel
-carbon_credit_price = 25  # $25 per tonne of CO2
 
 # Calculate total costs
 total_energy_cost = df['Energy_Consumption_kWh'].sum() * cost_per_kwh
@@ -102,7 +132,7 @@ st.success(f"### Potential Carbon Credit Revenue: ${potential_carbon_credit_reve
 st.write("---")
 
 # --- Anomaly Detection ---
-st.header("3. Anomaly Detection")
+st.header("4. Anomaly Detection")
 st.write("Identifying days with unusual energy consumption to pinpoint potential operational issues.")
 
 # Calculate the mean and standard deviation for energy per tonne
