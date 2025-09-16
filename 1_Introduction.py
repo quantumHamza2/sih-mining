@@ -5,10 +5,10 @@ st.set_page_config(
     page_icon="🤖",
     layout="wide",
 )
+st.markdown("<h1 style='text-align: left; font-size: 72px; font-weight: bold;'>NIMER</h1>", unsafe_allow_html=True)
+st.markdown("## AI-Driven LCA Tool for Mining Sustainability")
 
-st.title("NIMER ,AI-Driven LCA Tool for Mining Sustainability")
 st.markdown("### A proactive solution for environmental stewardship in the mining industry.")
-
 st.write("---")
 
 st.header("The Challenge")
