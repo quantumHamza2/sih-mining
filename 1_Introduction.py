@@ -6,7 +6,7 @@ st.set_page_config(
     layout="wide",
 )
 
-st.title("🌱 AI-Driven LCA Tool for Mining Sustainability")
+st.title("AI-Driven LCA Tool for Mining Sustainability")
 st.markdown("### A proactive solution for environmental stewardship in the mining industry.")
 
 st.write("---")
