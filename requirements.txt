@@ -4,3 +4,4 @@ numpy
 scikit-learn
 plotly
 google-generativeai
+statsmodels>=0.14,<1
