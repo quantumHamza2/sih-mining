@@ -63,8 +63,8 @@ st.header("2. Operational Efficiency Metrics")
 st.write("These metrics show the environmental and energy impact per unit of ore processed.")
 
 # Calculate Efficiency Metrics
-df['CO2_per_Tonne'] = df['CO2_Emissions_kg'] / df['Tonnage_Processed_tons']
-df['Energy_per_Tonne'] = df['Energy_Consumption_kWh'] / df['Tonnage_Processed_tons']
+df['CO2_per_Tonne'] = df['CO2_Emissions_kg'] / df['Tonnage_Processed_tons'].replace(0, np.nan)
+df['Energy_per_Tonne'] = df['Energy_Consumption_kWh'] / df['Tonnage_Processed_tons'].replace(0, np.nan)
 
 col1, col2 = st.columns(2)
 with col1:
@@ -78,7 +78,7 @@ st.write("---")
 
 # --- Cost Simulation ---
 st.header("3. Financial Impact Simulation")
-st.write("This section simulates the financial impact of operational costs and potential revenue from carbon credits.")
+st.write("This section simulates the financial impact of operational costs and the illustrative value of avoided emissions. This is not a carbon-credit revenue forecast.")
 
 # Calculate total costs
 total_energy_cost = df['Energy_Consumption_kWh'].sum() * cost_per_kwh
@@ -87,7 +87,8 @@ total_operational_cost = total_energy_cost + total_fuel_cost
 
 # Calculate carbon credit value
 total_co2_tonnes = df['CO2_Emissions_kg'].sum() / 1000
-potential_carbon_credit_revenue = total_co2_tonnes * carbon_credit_price
+avoided_co2_tonnes = (df['Energy_Consumption_kWh'].sum() - df_simulated['Energy_Consumption_kWh'].sum()) * 0.5 / 1000
+illustrative_avoided_value = avoided_co2_tonnes * carbon_credit_price
 
 # --- Add Chart for Cost Breakdown ---
 cost_breakdown = pd.DataFrame({
@@ -128,7 +129,8 @@ with col3:
     st.metric(label="Total Operational Cost", value=f"${total_operational_cost:,.0f}")
 
 st.markdown(f"***Your total carbon emissions for this period were {total_co2_tonnes:,.0f} tonnes.***")
-st.success(f"### Potential Carbon Credit Revenue: ${potential_carbon_credit_revenue:,.0f}")
+st.info(f"Illustrative avoided-emissions value: ${illustrative_avoided_value:,.0f} ({avoided_co2_tonnes:,.2f} tonnes avoided).")
+st.caption("Assumes $25/tonne and 0.5 kg CO2/kWh. Avoided emissions are not automatically eligible credits; this calculation does not establish verified revenue.")
 st.write("---")
 
 # --- Anomaly Detection ---
